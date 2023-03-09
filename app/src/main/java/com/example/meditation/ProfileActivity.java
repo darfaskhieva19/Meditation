@@ -21,4 +21,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void NextLogin(View view) {
         startActivity(new Intent(this, LoginActivity.class));
     }
+
+    public void NextListen(View view) {
+        startActivity(new Intent(this, ListenActivity.class));
+    }
+
+    public void NextFeeling(View view) {
+        startActivity(new Intent(this, MainMenuActivity.class));
+    }
 }

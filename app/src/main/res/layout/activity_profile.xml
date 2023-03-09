@@ -109,7 +109,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/Sound"
-                android:src="@drawable/home"/>
+                android:src="@drawable/home"
+                android:onClick="NextFeeling"/>
 
             <ImageView
                 android:id="@+id/Sound"
@@ -119,7 +120,8 @@
                 app:layout_constraintStart_toEndOf="@+id/Home"
                 app:layout_constraintEnd_toStartOf="@+id/User"
                 android:src="@drawable/sound"
-                android:onClick="NextListen"/>
+                android:onClick="NextListen"
+                tools:ignore="UsingOnClickInXml" />
 
             <ImageView
                 android:id="@+id/User"
@@ -129,7 +131,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/Sound"
                 android:src="@drawable/active_user"
-                android:onClick="NextProfile"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

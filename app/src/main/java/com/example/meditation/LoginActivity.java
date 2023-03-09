@@ -30,9 +30,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void NextMain(View view) {
-        /*if(txtEmail.getText().toString().equals("") || txtPassword.getText().toString().equals(""))
+
+        if(txtEmail.getText().toString().equals("") ||  txtPassword.getText().toString().equals(""))
         {
-            Toast.makeText(LoginActivity.this, "Все поля должны быть заполнены!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Все обязательные поля должны быть заполнены!", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -45,13 +46,22 @@ public class LoginActivity extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(LoginActivity.this, "Поле для Email должно обязательно содержать символ '@'", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Поле для Email должно обязательно содержать в себе символ '@'!", Toast.LENGTH_SHORT).show();
             }
-        }*/
-        startActivity(new Intent(this, MainMenuActivity.class));
+        }
+        //startActivity(new Intent(this, MainMenuActivity.class));
     }
     public void Login()
     {
-
+        /*String email = String.valueOf(txtEmail.getText());
+        String pass = String.valueOf(txtPassword.getText());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://mskko2021.mad.hakta.pro/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiRetrofit retrofitAPI = retrofit.create(RetrofitAPI.class);
+        MaskUsers modal = new MaskUsers(null, title, genre, producer, image);
+        Call<MaskUsers> call = retrofitAPI.createPost(modal);
+        call.enqueue(new Callback<MaskUsers>() {*/
     }
 }
