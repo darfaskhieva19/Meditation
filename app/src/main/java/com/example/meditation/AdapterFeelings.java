@@ -42,7 +42,7 @@ public class AdapterFeelings extends RecyclerView.Adapter<AdapterFeelings.ViewHo
 
         if(modal.getImage().equals("null"))
         {
-            //holder.img.setImageResource(R.drawable.);
+            holder.img.setImageResource(R.drawable.picture);
         }
         else
         {
