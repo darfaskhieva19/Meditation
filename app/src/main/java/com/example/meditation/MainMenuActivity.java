@@ -52,7 +52,7 @@ public class MainMenuActivity extends AppCompatActivity {
         ListView ivProducts = findViewById(R.id.listQuotes);
         pAdapter = new AdapterQuete(MainMenuActivity.this, listQuote);
         ivProducts.setAdapter(pAdapter);
-        //new GetQuotes().execute();
+        new GetQuete().execute();
 
         RecyclerView rvFeeling = findViewById(R.id.visualizer);
         rvFeeling.setHasFixedSize(true);
@@ -132,7 +132,61 @@ public class MainMenuActivity extends AppCompatActivity {
             }
             catch (Exception exception)
             {
-                Toast.makeText(MainMenuActivity.this, "При выводе данных возникла ошибка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainMenuActivity.this, "При выводе данных произошла ошибка", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private class GetQuete extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url = new URL("http://mskko2021.mad.hakta.pro/api/quotes");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder result = new StringBuilder();
+                String l = "";
+
+                while ((l = reader.readLine()) != null)
+                {
+                    result.append(l);
+                }
+                return result.toString();
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+        }
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try
+            {
+                listFeeling.clear();
+                dataAdapter.notifyDataSetChanged();
+
+                JSONObject object = new JSONObject(s);
+                JSONArray tempArray  = object.getJSONArray("data");
+
+                for (int i = 0;i<tempArray.length();i++)
+                {
+                    JSONObject productJson = tempArray.getJSONObject(i);
+                    MaskQuete tempProduct = new MaskQuete(
+                            productJson.getInt("id"),
+                            productJson.getString("title"),
+                            productJson.getString("image"),
+                            productJson.getString("description")
+                    );
+                    listQuote.add(tempProduct);
+                    pAdapter.notifyDataSetInvalidated();
+                }
+            }
+            catch (Exception exception)
+            {
+                Toast.makeText(MainMenuActivity.this, "При выводе данных произошла ошибка", Toast.LENGTH_SHORT).show();
             }
         }
     }
